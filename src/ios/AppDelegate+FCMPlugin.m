@@ -39,17 +39,21 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
 }
 
 - (BOOL)application:(UIApplication *)application customDidFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
     [self application:application customDidFinishLaunchingWithOptions:launchOptions];
-    
+
     NSLog(@"DidFinishLaunchingWithOptions");
+    [self performSelector:@selector(registerForNotifications) withObject:self afterDelay:0.3f];
     
+    return YES;
+}
+
+- (void) registerForNotifications {
     // [START configure_firebase]
     if([FIRApp defaultApp] == nil) {
         [FIRApp configure];
     }
     // [END configure_firebase]
-    
+
     // iOS 9 or earlier Disable the deprecation warnings.
     // [START register_for_notifications]
     if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max) {
@@ -83,7 +87,6 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
 #endif
     }
     // [END register_for_notifications]
-    return YES;
 }
 
 // [START message_handling]
