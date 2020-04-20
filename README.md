@@ -11,6 +11,10 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/andrehtissot/cordova-plugin-fcm-with-dependecy-updated/badge.svg?targetFile=package.json)](https://snyk.io/test/github/andrehtissot/cordova-plugin-fcm-with-dependecy-updated?targetFile=package.json)
 [![DeepScan grade](https://deepscan.io/api/teams/3417/projects/5068/branches/39495/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=3417&pid=5068&bid=39495)
 
+### Version 4.6.4 (20/04/2020)
+
+Replaced `UIWebView` with `WKWebView`, as required by Apple (https://developer.apple.com/documentation/uikit/uiwebview).
+
 ### Version 4.6.0 (04/04/2020) [DEPRECATED]
 
 For the IOS, if app is on the foreground and the app receives a `data` push notification, the data can be retrieved by setting the callback to the new method: `FCMPlugin.onFirebaseDataNotificationIOS`.

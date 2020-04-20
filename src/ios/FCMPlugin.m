@@ -3,6 +3,7 @@
 #import "AppDelegate+FCMPlugin.h"
 #import <UserNotifications/UserNotifications.h>
 #import <Cordova/CDV.h>
+#import <WebKit/WebKit.h>
 #import "FCMPlugin.h"
 #import "Firebase.h"
 
@@ -154,12 +155,7 @@ static FCMPlugin *fcmPluginInstance;
     NSString *JSONString = [[NSString alloc] initWithBytes:[payload bytes] length:[payload length] encoding:NSUTF8StringEncoding];
     NSString * notifyJS = [NSString stringWithFormat:@"%@(%@);", notificationCallback, JSONString];
     NSLog(@"stringByEvaluatingJavaScriptFromString %@", notifyJS);
-    
-    if ([self.webView respondsToSelector:@selector(stringByEvaluatingJavaScriptFromString:)]) {
-        [(UIWebView *)self.webView stringByEvaluatingJavaScriptFromString:notifyJS];
-    } else {
-        [self.webViewEngine evaluateJavaScript:notifyJS completionHandler:nil];
-    }
+    [self runJS:notifyJS];
 }
 
 -(void) notifyOfFirebaseDataMessage:(NSData *)payload
@@ -167,12 +163,7 @@ static FCMPlugin *fcmPluginInstance;
     NSString *JSONString = [[NSString alloc] initWithBytes:[payload bytes] length:[payload length] encoding:NSUTF8StringEncoding];
     NSString * notifyJS = [NSString stringWithFormat:@"%@(%@);", firebaseDataNotificationCallback, JSONString];
     NSLog(@"stringByEvaluatingJavaScriptFromString %@", notifyJS);
-    
-    if ([self.webView respondsToSelector:@selector(stringByEvaluatingJavaScriptFromString:)]) {
-        [(UIWebView *)self.webView stringByEvaluatingJavaScriptFromString:notifyJS];
-    } else {
-        [self.webViewEngine evaluateJavaScript:notifyJS completionHandler:nil];
-    }
+    [self runJS:notifyJS];
 }
 
 -(void) notifyFCMTokenRefresh:(NSString *)token
@@ -181,12 +172,17 @@ static FCMPlugin *fcmPluginInstance;
     fcmToken = token;
     NSString * notifyJS = [NSString stringWithFormat:@"%@('%@');", tokenRefreshCallback, token];
     NSLog(@"stringByEvaluatingJavaScriptFromString %@", notifyJS);
-    
-    if ([self.webView respondsToSelector:@selector(stringByEvaluatingJavaScriptFromString:)]) {
-        [(UIWebView *)self.webView stringByEvaluatingJavaScriptFromString:notifyJS];
-    } else {
-        [self.webViewEngine evaluateJavaScript:notifyJS completionHandler:nil];
-    }
+    [self runJS:notifyJS];
+}
+
+- (void)runJS:(NSString *)jsCode {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([self.webView respondsToSelector:@selector(evaluateJavaScript:completionHandler:)]) {
+            [(WKWebView *)self.webView evaluateJavaScript:jsCode completionHandler:nil];
+        } else {
+            [self.webViewEngine evaluateJavaScript:jsCode completionHandler:nil];
+        }
+    });
 }
 
 -(void) appEnterBackground

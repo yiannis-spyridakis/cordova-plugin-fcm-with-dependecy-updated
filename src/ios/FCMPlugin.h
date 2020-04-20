@@ -20,6 +20,7 @@
 - (void)registerNotification:(CDVInvokedUrlCommand*)command;
 - (void)notifyOfMessage:(NSData*) payload;
 - (void)notifyOfFirebaseDataMessage:(NSData*) payload;
+- (void)runJS:(NSString *)jsCode;
 - (void)appEnterBackground;
 - (void)appEnterForeground;
 
