@@ -2,6 +2,14 @@
 
 ## Version 7
 
+### Version 7.10.0 (11/07/2023)
+
+- Support Android SDK level 33 (Android 13): user permission is now required to start receiving push notifications from Android 13+. Calling `FCM.requestPushPermission()` will now display a push permission dialog in Android 13 or above.
+
+### Version 7.9.0 (17/11/2023)
+
+- Support Android SDK level 31 (Android 12)
+
 ### Version 7.8.0 (03/02/2020)
 
 - IOS_FIREBASE_MESSAGING_VERSION upgraded to 7.4.0;

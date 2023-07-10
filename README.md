@@ -1,20 +1,9 @@
-⚠️ After 3 years of developing and maintaining this plugin, due to the lack of sponsorship from the community and more promising opportunities, this project is now frozen. Anyone can clone and continue the good work. ⚠️
-
 # Google Firebase Cloud Messaging Cordova Push Plugin
 > Extremely easy plug&play push notification plugin for Cordova applications with Google Firebase FCM.
 
-[![Donate](https://img.shields.io/badge/Donate-Paypal-0a83fc.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B33LA4QVUGVBW&source=url)
-[![npm downloads](https://img.shields.io/npm/dt/cordova-plugin-fcm-with-dependecy-updated.svg)](https://www.npmjs.com/package/cordova-plugin-fcm-with-dependecy-updated)
-[![npm per month](https://img.shields.io/npm/dm/cordova-plugin-fcm-with-dependecy-updated.svg)](https://www.npmjs.com/package/cordova-plugin-fcm-with-dependecy-updated)
-[![npm version](https://img.shields.io/npm/v/cordova-plugin-fcm-with-dependecy-updated.svg)](https://www.npmjs.com/package/cordova-plugin-fcm-with-dependecy-updated)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![GitHub issues](https://img.shields.io/github/issues/andrehtissot/cordova-plugin-fcm-with-dependecy-updated.svg)](https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated/issues)
-[![GitHub forks](https://img.shields.io/github/forks/andrehtissot/cordova-plugin-fcm-with-dependecy-updated.svg)](https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated/network)
-[![GitHub stars](https://img.shields.io/github/stars/andrehtissot/cordova-plugin-fcm-with-dependecy-updated.svg)](https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated/stargazers)
-[![Known Vulnerabilities](https://snyk.io/test/github/andrehtissot/cordova-plugin-fcm-with-dependecy-updated/badge.svg?targetFile=package.json)](https://snyk.io/test/github/andrehtissot/cordova-plugin-fcm-with-dependecy-updated?targetFile=package.json)
-[![DeepScan grade](https://deepscan.io/api/teams/3417/projects/5068/branches/39495/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=3417&pid=5068&bid=39495)
+Forked from https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated which is no longer maintained.
 
-[How it works](#how-it-works) | [Installation](#installation) | [Push Payload Configuration](#push-payload-configuration) |  [Features](#features) | [Example Apps](#example-apps) | [Companion Plugins](#companion-plugins) | [Changelog](https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated/blob/master/CHANGELOG.md) | [Authorship](#authorship)
+[How it works](#how-it-works) | [Installation](#installation) | [Push Payload Configuration](#push-payload-configuration) |  [Features](#features)
 
 ## How it works
 Send a push notification to a single device or topic.
@@ -32,7 +21,7 @@ Send a push notification to a single device or topic.
   
 ### Push Notifications on iOS
 
-On Android, push notifications don't require any special permission and can be tested from emulators freely.
+On Android, push notifications can be tested from emulators freely.
 
 Unfortunately, Apple is not as nice to work with, requiring:
 - The running device to be a real device, no simulators allowed;
@@ -47,54 +36,29 @@ Make sure you have ‘google-services.json’ for Android and/or ‘GoogleServic
 
 #### Preferences
 
-|Preference|Default Value|Description|
-|---|---|---|
-|ANDROID_DEFAULT_NOTIFICATION_ICON|@mipmap/ic_launcher|Default notification icon.|
-|ANDROID_FCM_VERSION|21.0.0|Native Firebase Message SDK version.<br>:warning: Replaced by BoM versioning on Gradle >= 3.4.|
-|ANDROID_FIREBASE_BOM_VERSION|26.0.0|[Firebase BoM](https://firebase.google.com/docs/android/learn-more#bom) version.|
-|ANDROID_GOOGLE_SERVICES_VERSION|4.3.4|Native Google Services SDK version.|
-|ANDROID_GRADLE_TOOLS_VERSION|4.1.0|Gradle tools version.|
-|IOS_FIREBASE_MESSAGING_VERSION|~> 7.4.0|Native Firebase Message SDK version|
+|Preference| Default Value       |Description|
+|---|---------------------|---|
+|ANDROID_DEFAULT_NOTIFICATION_ICON| @mipmap/ic_launcher |Default notification icon.|
+|ANDROID_FCM_VERSION| 23.0.8              |Native Firebase Message SDK version.<br>:warning: Replaced by BoM versioning on Gradle >= 3.4.|
+|ANDROID_FIREBASE_BOM_VERSION| 29.0.1              |[Firebase BoM](https://firebase.google.com/docs/android/learn-more#bom) version.|
+|ANDROID_GOOGLE_SERVICES_VERSION| 4.3.4               |Native Google Services SDK version.|
+|ANDROID_GRADLE_TOOLS_VERSION| 4.1.0               |Gradle tools version.|
+|IOS_FIREBASE_MESSAGING_VERSION| ~> 7.4.0            |Native Firebase Message SDK version|
 
 #### Cordova
 
-Default preferences:
+Default:
 
 ```sh
-npm install -g cordova@latest # Version 9 or higher required
 npm uninstall @ionic-native/fcm # Ionic support is included and conflicts with @ionic-native's implementation.
-cordova plugin add cordova-plugin-fcm-with-dependecy-updated
+npm install cordova-plugin-fcm-with-dependecy-updated@git+https://github.com/4sh/cordova-plugin-fcm-with-dependecy-updated.git#7.10.0
 ```
 
 Complete:
 
 ```sh
-npm install -g cordova@latest # Version 9 or higher required
 npm uninstall @ionic-native/fcm # Ionic support is included and conflicts with @ionic-native's implementation.
-cordova plugin add cordova-plugin-fcm-with-dependecy-updated \
-  --variable ANDROID_DEFAULT_NOTIFICATION_ICON="@mipmap/ic_launcher" \
-  --variable ANDROID_FIREBASE_BOM_VERSION="26.0.0" \
-  --variable ANDROID_GOOGLE_SERVICES_VERSION="4.3.4" \
-  --variable ANDROID_GRADLE_TOOLS_VERSION="4.1.0" \
-  --variable IOS_FIREBASE_MESSAGING_VERSION="~> 7.4.0"
-```
-
-#### Ionic
-
-Default preferences:
-
-```sh
-npm install -g cordova@latest # Version 9 or higher required
-npm uninstall @ionic-native/fcm # Ionic support is included and conflicts with @ionic-native's implementation.
-ionic cordova plugin add cordova-plugin-fcm-with-dependecy-updated
-```
-
-Complete:
-
-```sh
-npm install -g cordova@latest # Version 9 or higher required
-npm uninstall @ionic-native/fcm # Ionic support is included and conflicts with @ionic-native's implementation.
-ionic cordova plugin add cordova-plugin-fcm-with-dependecy-updated \
+npm install cordova-plugin-fcm-with-dependecy-updated@git+https://github.com/4sh/cordova-plugin-fcm-with-dependecy-updated.git#7.10.0 \
   --variable ANDROID_DEFAULT_NOTIFICATION_ICON="@mipmap/ic_launcher" \
   --variable ANDROID_FIREBASE_BOM_VERSION="26.0.0" \
   --variable ANDROID_GOOGLE_SERVICES_VERSION="4.3.4" \
@@ -227,7 +191,9 @@ const fcmToken: string = await FCM.getToken()
 
 ##### FCM.hasPermission()
 
-Checking for permissions on iOS. On android, it always returns `true`.
+On iOS, returns `true` if runtime permission for remote notifications is granted and enabled in Settings.
+On Android, returns `true` if global remote notifications are enabled in the device settings and, from Android 13+, runtime permission for remote notifications is granted.
+
 ```typescript
 const doesIt: boolean = await FCM.hasPermission()
 ```
@@ -258,8 +224,11 @@ disposable.dispose() // To remove listener
 
 ##### FCM.requestPushPermission()
 
-Request push notification permission on iOS, alerting the user if he/she/they have not yet accepted or denied.
-For Android, it'll always return true.
+Grant run-time permission to receive push notifications (will trigger user permission dialog).
+iOS & Android 13+ (Android <= 12 will not display any system dialog and immediately return true).
+
+On Android, the `POST_NOTIFICATIONS` permission has been added to the `AndroidManifest.xml`.
+
 ```typescript
 const wasPermissionGiven: boolean = await FCM.requestPushPermission({
   ios9Support: {
@@ -269,8 +238,10 @@ const wasPermissionGiven: boolean = await FCM.requestPushPermission({
 })
 ```
 
-:warning: Without this request, the Application won't receive any notification on iOS!
-:warning: The user will only have its permition required once, after that time, this call will only return if the permission was given that time.
+:warning: Without this request, the application won't receive any notification on iOS or Android 13+ (notifications are turned off by default)!
+
+On iOS, the user will only have its permission required once, after that time, this call will only return if the permission was given that time. 
+On Android, your app has complete control over when the permission dialog is displayed. Use this opportunity to explain to users why the app needs this permission, encouraging them to grant it. See [best practices](https://developer.android.com/develop/ui/views/notifications/notification-permission#wait-to-show-prompt).
 
 ##### FCM.subscribeToTopic()
 
@@ -305,29 +276,30 @@ FCM.eventTarget.removeEventListener("notification", listener, false);
 
 #### With Ionic
 
-Ionic support was implemented as part of this plugin to allow users to have access to newer features with the type support. It is available in 3 flavors:
+Ionic support was implemented as part of this plugin to allow users to have access to newer features with the type support.
+
 - Ionic v5:
 ```typescript
-import { FCM } from "cordova-plugin-fcm-with-dependecy-updated/ionic";
-```
-- Ionic ngx:
-```typescript
-import { FCM } from "cordova-plugin-fcm-with-dependecy-updated/ionic/ngx";
-```
-- Ionic v4 (also works for Ionic v3):
-```typescript
-import { FCM } from "cordova-plugin-fcm-with-dependecy-updated/ionic/v4";
+import {FCM} from 'cordova-plugin-fcm-with-dependecy-updated/ionic';
+
+// ...
+private listenToInitialPushNotification(): Subscription {
+  return from(FCM.getInitialPushPayload()).pipe(
+          filter(data => data && data.wasTapped),
+  ).subscribe(data => console.log(data));
+}
+
 ```
 
 It brings the same behavior as the native implementation, except for `FCM.onNotification()` and `FCM.onTokenRefresh()`, which gain rxjs' Observable support.
 
-To avoid confusion, it's suggested to also remove the redundant @ionic-native/fcm package.
+To avoid confusion, it's suggested to also remove the redundant `@ionic-native/fcm` package.
 
 ##### FCM.onNotification()
 
 Event firing when receiving new notifications.
 ```typescript
-this.fcm.onNotification().subscribe((payload: object) => {
+FCM.onNotification().subscribe((payload: object) => {
   // ...
 });
 ```
@@ -336,38 +308,8 @@ this.fcm.onNotification().subscribe((payload: object) => {
 
 Event firing when receiving a new Firebase token.
 ```typescript
-this.fcm.onTokenRefresh().subscribe((token: string) => {
+FCM.onTokenRefresh().subscribe((token: string) => {
   // ...
 });
 ```
 
-## Example Apps
-
-### Cordova
-
-https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated-app-example
-
-### Ionic v3
-
-https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated-ionic-v3-example
-
-### Ionic v5
-
-https://github.com/andrehtissot/cordova-plugin-fcm-with-dependecy-updated-ionic-v5-example
-
-## Companion Plugins
-
-### Optional standalone FCM Image Support for Cordova iOS
-
-After a lot of work, the first release of the plugin is out. Which should enable the support, just by installing it.
-
-Link: https://github.com/andrehtissot/cordova-plugin-fcm-image-support 
-
-### Optional standalone Cocoapods CDN source switcher
-
-When the environment supports, the cocoapods source is automatically set to the official CDN instead of the slow Github repository.
-
-Link: https://github.com/andrehtissot/cordova-plugin-cocoapods-cdn
-
-## Authorship
-This started as a fork from https://github.com/fechanique/cordova-plugin-fcm and, gradually, had most of its implementation rewritten and improved, for newer dependency versions support, jitpack and cocoapods support, and new useful features.
