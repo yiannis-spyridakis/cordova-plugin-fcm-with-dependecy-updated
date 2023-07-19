@@ -154,7 +154,7 @@ public class FCMPlugin extends CordovaPlugin {
                 return false;
             }
         } catch (Exception e) {
-            Log.d(TAG, "ERROR: onPluginAction: " + e.getMessage());
+            Log.d(TAG, "ERROR: onPluginAction: " + e.toString());
             callbackContext.error(e.getMessage());
             return false;
         }
@@ -235,7 +235,7 @@ public class FCMPlugin extends CordovaPlugin {
                     FirebaseMessaging.getInstance().deleteToken();
                     callbackContext.success();
                 } catch (Exception e) {
-                    callbackContext.error(e.getMessage());
+                    callbackContext.error(e.toString());
                 }
             }
         });
@@ -260,7 +260,7 @@ public class FCMPlugin extends CordovaPlugin {
 
                     callbackContext.success(areNotificationsEnabled && hasRuntimePermission ? 1 : 0);
                 } catch (Exception e) {
-                    callbackContext.error(e.getMessage());
+                    callbackContext.error(e.toString());
                 }
             }
         });
@@ -282,7 +282,7 @@ public class FCMPlugin extends CordovaPlugin {
                     }
 
                 } catch (Exception e) {
-                    callbackContext.error(e.getMessage());
+                    callbackContext.error(e.toString());
                 }
             }
         });
@@ -359,9 +359,9 @@ public class FCMPlugin extends CordovaPlugin {
 
         } catch (Exception e) {
             if (postNotificationPermissionRequestCallbackContext != null) {
-                postNotificationPermissionRequestCallbackContext.error(e.getMessage());
+                postNotificationPermissionRequestCallbackContext.error(e.toString());
             } else {
-                Log.e(TAG, "onRequestPermissionResult error " + e.getMessage());
+                Log.e(TAG, "onRequestPermissionResult error " + e.toString());
             }
         }
     }
@@ -418,7 +418,7 @@ public class FCMPlugin extends CordovaPlugin {
             }
             FCMPlugin.dispatchJSEvent(notificationEventName, jo.toString());
         } catch (Exception e) {
-            Log.d(TAG, "\tERROR sendPushPayload: " + e.getMessage());
+            Log.d(TAG, "\tERROR sendPushPayload: " + e.toString());
         }
     }
 
@@ -427,7 +427,7 @@ public class FCMPlugin extends CordovaPlugin {
         try {
             FCMPlugin.dispatchJSEvent(tokenRefreshEventName, "\"" + token + "\"");
         } catch (Exception e) {
-            Log.d(TAG, "\tERROR sendTokenRefresh: " + e.getMessage());
+            Log.d(TAG, "\tERROR sendTokenRefresh: " + e.toString());
         }
     }
 

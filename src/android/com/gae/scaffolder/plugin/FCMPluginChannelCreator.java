@@ -127,7 +127,7 @@ public class FCMPluginChannelCreator {
             callbackContext.success();
             Log.d(TAG, "Channel finished as "+channelConfig.toJSONObject().toString());
         } catch (Exception e) {
-            Log.w(TAG, "createNotificationChannel: "+e.getMessage());
+            Log.w(TAG, "createNotificationChannel: "+e.toString());
             callbackContext.error(e.getMessage());
         }
     }
