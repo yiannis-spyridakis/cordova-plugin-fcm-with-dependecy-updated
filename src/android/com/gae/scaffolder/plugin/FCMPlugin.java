@@ -245,11 +245,6 @@ public class FCMPlugin extends CordovaPlugin {
         cordova.getThreadPool().execute(new Runnable() {
             public void run() {
                 try {
-                    NotificationManagerCompat notificationManagerCompat =
-                            NotificationManagerCompat.from(cordova.getActivity().getApplicationContext());
-
-                    boolean areNotificationsEnabled = notificationManagerCompat.areNotificationsEnabled();
-
                     boolean hasRuntimePermission;
 
                     if (Build.VERSION.SDK_INT >= 33) { // Android 13+
@@ -258,12 +253,19 @@ public class FCMPlugin extends CordovaPlugin {
                         hasRuntimePermission = true;
                     }
 
-                    callbackContext.success(areNotificationsEnabled && hasRuntimePermission ? 1 : 0);
+                    callbackContext.success(areNotificationsEnabled() && hasRuntimePermission ? 1 : 0);
                 } catch (Exception e) {
                     callbackContext.error(e.toString());
                 }
             }
         });
+    }
+
+    private boolean areNotificationsEnabled() {
+        NotificationManagerCompat notificationManagerCompat =
+                NotificationManagerCompat.from(cordova.getActivity().getApplicationContext());
+
+        return notificationManagerCompat.areNotificationsEnabled();
     }
 
     private void grantPermission(final CallbackContext callbackContext) {
@@ -279,6 +281,8 @@ public class FCMPlugin extends CordovaPlugin {
                             requestPermissions(plugin, POST_NOTIFICATIONS_PERMISSION_REQUEST_ID, permissions);
                             sendEmptyPluginResultAndKeepCallback(callbackContext);
                         }
+                    } else {
+                        callbackContext.success(areNotificationsEnabled() ? 1 : 0);
                     }
 
                 } catch (Exception e) {

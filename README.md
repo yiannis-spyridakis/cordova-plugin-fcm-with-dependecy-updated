@@ -225,7 +225,7 @@ disposable.dispose() // To remove listener
 ##### FCM.requestPushPermission()
 
 Grant run-time permission to receive push notifications (will trigger user permission dialog).
-iOS & Android 13+ (Android <= 12 will not display any system dialog and immediately return true).
+iOS & Android 13+ (Android <= 12 does not display any system dialog and immediately returns the value of `hasPermission`).
 
 On Android, the `POST_NOTIFICATIONS` permission has been added to the `AndroidManifest.xml`.
 
