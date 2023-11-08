@@ -2,6 +2,10 @@
 
 ## Version 7
 
+### Version 7.10.1 (08/11/2023)
+
+- Remove post install script (for installing ionic native dependencies) causing issue with recent Node.js versions 
+
 ### Version 7.10.0 (11/07/2023)
 
 - Support Android SDK level 33 (Android 13): user permission is now required to start receiving push notifications from Android 13+. Calling `FCM.requestPushPermission()` will now display a push permission dialog in Android 13 or above.
